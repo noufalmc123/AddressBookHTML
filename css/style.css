@@ -7,13 +7,14 @@ body
 {
     
     display: flex;
-    width: 40%;
-    justify-content: center;
-    margin-top:10px;
+    width: 100%;
+    padding:10px;
+    background-color: white;
 }
 .logo-content
 {
     display: flex;
+    width: 40%;
     justify-content: center;
 }
 .logo-content img
@@ -31,4 +32,32 @@ body
 .text
 {
     color: black;
+}
+.form-section
+{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    margin-top:40px;
+}
+.contact-form
+{
+    display:flex;
+    width: 40%;
+    justify-content:center;
+    background-color:white;
+    border:1px solid green;
+    box-shadow: 1px 1px;
+}
+.form-header
+{
+    background-color: #4287f5;
+    width:100%;
+}
+.form-header h3
+{
+    color:white;
+    text-align: center;
+    margin-top:20px;
+    font-family: 'Poppins', sans-serif;
 }
