@@ -22,18 +22,18 @@
     <div class="form-section">
         <div class="contact-form">
             <div class="form-header">                
-            <h3>Person Addres Form</h3>
+            <h3>Person Address Form</h3>
             
             </div>
            <div class="form-body">
-               <div class="form-content">
+               <form name="form" onsubmit="operation(save)" onreset="operation(rese)">               
+                   <div class="form-content">
                     <input type="text" class="form-control" id="name" name="name">
                     <label class="label">Full Name</label>
                     <error class="error_name"></error>
                 </div>
                 <div class="form-content" class="form-control">
                     <textarea class="txtarea" placeholder="Address" id="address">
-
                     </textarea>
                     <br>
                     <error class="error_address"></error>
@@ -65,9 +65,10 @@
                         <button type="submit" style="padding:10px;width: 127px;">Add</button>
                     </div>
                     <div style="margin-left:20px;">
-                        <button type="submit" style="padding:10px;width: 127px;">Reset</button>
+                        <button type="reset" style="padding:10px;width: 127px;">Reset</button>
                     </div>
                 </div>
+                </form>
            </div>
         </div>
     </div>
@@ -115,4 +116,17 @@
            }
        })
    })
+   const operation=(callback)=>
+   {
+      callback()
+   }
+   const save=()=>
+   {
+       alert("inside submit");
+   }
+   const rese=()=>
+   {
+       alert("inside RESET");
+   }
+
 </script>
