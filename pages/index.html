@@ -7,6 +7,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;1,100&family=Roboto+Serif:ital,wght@1,100&display=swap" rel="stylesheet">
     <link rel='stylesheet' type='text/css' media='screen' href='/css/style.css'>
+    <script src="/js/contact.js"></script>
 </head>
 <body>
     <header class="header">
@@ -26,12 +27,15 @@
             </div>
            <div class="form-body">
                <div class="form-content">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" id="name" name="name">
+                    <label class="label">Full Name</label>
+                    <error class="error_name"></error>
                 </div>
                 <div class="form-content" class="form-control">
-                    <textarea class="txtarea" placeholder="Address">
+                    <textarea class="txtarea" placeholder="Address" id="address">
 
                     </textarea>
+                    <error class="error_address"></error>
                 </div>
                 <div class="form-content">
                     <input type="text" class="form-control">
@@ -52,7 +56,8 @@
                         </div>
                 </div>
                 <div class="form-content">
-                    <input type="text" class="form-control" placeholder="Phone Number">
+                    <input type="text" class="form-control" id="phone" placeholder="Phone Number">
+                    <error class="error_phone"></error>
                 </div>
                 <div class="form-content">
                     <div style="margin-left:80px;">
@@ -67,3 +72,46 @@
     </div>
 </body>
 </html>
+<script>
+   window.addEventListener('DOMContentLoaded', (event) => {
+       const name=document.querySelector("#name");
+       name.addEventListener('input',function(){
+           let error=document.querySelector(".error_name");
+           try
+           {
+               new AddressBook().name=name.value;
+               error.textContent='';
+           }
+           catch(e)
+           {
+               error.textContent=e;
+           }
+       })
+       const mobile=document.querySelector("#phone");
+       mobile.addEventListener('input',function(){
+           let error=document.querySelector(".error_phone");
+           try
+           {
+               new AddressBook().phoneNumber=mobile.value;
+               error.textContent='';
+           }
+           catch(e)
+           {
+               error.textContent=e;
+           }
+       })
+       const address=document.querySelector("#address");
+       address.addEventListener('input',function(){
+           let error=document.querySelector(".error_address");
+           try
+           {
+               new AddressBook().address=address.value;
+               error.textContent='';
+           }
+           catch(e)
+           {
+               error.textContent=e;
+           }
+       })
+   })
+</script>

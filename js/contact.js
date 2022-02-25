@@ -27,7 +27,15 @@ class AddressBook
     }
     set address(address)
     {
-        this.address=address;
+        let addRegex=RegExp('/^((?:(?:^| )\S+ *)){3,}$/i');
+        if(addRegex.test(address))
+        {
+            this._address=address;
+        }
+        else
+        {
+            throw "Invalid Address";
+        }
     }
     set state(state)
     {
@@ -47,7 +55,16 @@ class AddressBook
     }
     set phoneNumber(phoneNumber)
     {
-        this.phoneNumber=phoneNumber;
+        let nameRegex=RegExp('^([0-9,+]?){1,3}([\s]?)[0-9]{10}$');
+        if(nameRegex.test(phoneNumber))
+        {
+            this._phoneNumber=phoneNumber;
+        }
+        else
+        {
+            throw "Invalid Mobile Number"
+        }
+        
     }
     get phoneNumber()
     {

@@ -103,4 +103,47 @@ width: 100%;
     width:100%;
     opacity: 0.4;
   }
+  error
+  {
+      color: red;
+      font-size:15px;
+      margin-left: 10px;
+  }
  
+  label
+  {
+      position: absolute;
+      margin-left:10px;
+  }
+  
+  /* .form-content>label{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    color: #ccc;
+  } */
+  
+  /* input:focus + label{
+    color: red;
+    font-size: 0.8em;
+    width: auto;
+    height: 1.3em;
+    padding: 0px 0.5em 0px 0.5em;
+    margin: 0px;
+    outline: 1px solid red; 
+    background: red;
+    transition: 0.2s ease-in-out;
+    top: 0em;
+    left: 2em;
+  } */
+  input:focus + label { 
+    font-size: 0.8em;
+    width: auto;
+    height: 1.3em;
+    padding: 0px 0.5em 0px 0.5em;
+    margin: 0px;
+    transition:0.2s ease-in-out;
+    margin-bottom:70px;
+   }
+   
