@@ -1,5 +1,12 @@
 let jsonObject={};
+
+
+
+
+
    window.addEventListener('DOMContentLoaded', (event) => {
+
+    createInnerHtml();
        const name=document.querySelector("#name");
        name.addEventListener('input',function(){
            let error=document.querySelector(".error_name");
@@ -40,6 +47,34 @@ let jsonObject={};
            }
        })
    })
+
+
+
+   const createInnerHtml=()=>
+{
+    alert("hi");
+    let Json1=createJson();
+    
+    if(Json1.length===0) return;
+    const headerHtml='<thead><th></th><th>Name</th><th>Address</th><th>City</th><th>State</th><th>ZipCode</th><th>Phone Number</th></thead>';
+let innertHtml=`${headerHtml}`;
+    for(let Json of Json1)
+    {
+    innertHtml=`${innertHtml}<tr><td>${Json._name}</td><td>${Json._address}</td><td>
+<label class="dept-label">${Json._city}</label></td><td>${Json._state}</td><td>${Json._zipcode}</td>
+<td>${Json._phoneNumber}</td>
+<td>
+<img src="/assets/create-black-18dp.svg" onclick="update(this)" id="${Json._id}">
+<img src="/assets/delete-black-18dp.svg" onclick="remove(this)" id="${Json._id}"></td></tr>`;
+    }
+document.querySelector("#table").innerHTML=innertHtml;
+}
+
+   const createJson=()=>
+{
+    return localStorage.getItem("AddressBook") ? JSON.parse(localStorage.getItem('AddressBook')):[];
+}
+
    const operation=(callback)=>
    {
       callback()
