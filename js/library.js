@@ -51,8 +51,18 @@ let jsonObject={};
    }
    const rese=()=>
    {
-      
+    unsetvalue('#name', '');
+    unsetvalue('#address', '');
+    unsetvalue('#city', '');
+    unsetValueIndex('#state',0);
+    unsetValueIndex('#zip',0);
+    unsetValueIndex('#phone', 0);
    }
+   const unsetValueIndex=(id,index)=>
+{
+    const element=document.querySelector(id);
+    element.selectedIndex=index;
+}
   let setJson=()=>
   {
     jsonObject._name=getInputValue("#name");
