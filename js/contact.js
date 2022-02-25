@@ -8,10 +8,9 @@ class AddressBook
     set name(name)
     {
         let nameRegex = RegExp('^[A-Z]{1}[a-z A-Z]{2,}$')
-        if (nameRegex.test(name))
-            this._name = name;
-        else
-            throw "Name is Incorrect";
+        if (nameRegex.test(name)) this._name = name;  
+        else  throw "Name is Incorrect";
+           
     }
     set id(id)
     {
@@ -48,11 +47,11 @@ class AddressBook
     }
     set zipcode(zipcode)
     {
-        this.zipcode=zipcode;
+        this._zipcode=zipcode;
     }
     get zipcode()
     {
-        return this.zipcode;
+        return this._zipcode;
     }
     set phoneNumber(phoneNumber)
     {
@@ -73,7 +72,7 @@ class AddressBook
     }
     toString() 
     {
-        return "\nId =>  " + this.id + " Name =>" + this.name+"Address =>"+this.address+"State =>"+this.state+
-        "City =>"+this.city+"ZipCode => "+this.zipcode+"Phone Number => "+this.phoneNumber ;
+        return "\nId =>  " + this._id + " Name =>" + this._name+"Address =>"+this._address+"State =>"+this._state+
+        "City =>"+this._city+"ZipCode => "+this._zipcode+"Phone Number => "+this._phoneNumber ;
     }
 }
