@@ -27,14 +27,14 @@ class AddressBook
     }
     set address(address)
     {
-        let addRegex=RegExp('^((?:(?:^| )\S+ *)){3,}$');
+        let addRegex=RegExp('(^((?:(?:^| )\S+ *)){3,})$');
         if(addRegex.test(address))
         {
             this._address=address;
         }
         else
         {
-            throw "Invalid Address";
+            throw "Invalid Address"
         }
     }
     set state(state)
