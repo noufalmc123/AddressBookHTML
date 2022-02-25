@@ -55,7 +55,7 @@ class AddressBook
     }
     set phoneNumber(phoneNumber)
     {
-        let nameRegex=RegExp('^([0-9,+]?){1,3}([\s]?)[0-9]{10}$');
+        let nameRegex=RegExp('^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$');
         if(nameRegex.test(phoneNumber))
         {
             this._phoneNumber=phoneNumber;
