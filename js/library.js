@@ -4,59 +4,19 @@ let jsonObject={};
 
 
 
-   window.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener('DOMContentLoaded', (event) => {
 
     createInnerHtml();
-       const name=document.querySelector("#name");
-       name.addEventListener('input',function(){
-           let error=document.querySelector(".error_name");
-           try
-           {
-               new AddressBook().name=name.value;
-               error.textContent='';
-           }
-           catch(e)
-           {
-               error.textContent=e;
-           }
-       })
-       const mobile=document.querySelector("#phone");
-       mobile.addEventListener('input',function(){
-           let error=document.querySelector(".error_phone");
-           try
-           {
-               new AddressBook().phoneNumber=mobile.value;
-               error.textContent='';
-           }
-           catch(e)
-           {
-               error.textContent=e;
-           }
-       })
-       const address=document.querySelector("#address");
-       address.addEventListener('input',function(){
-           let error=document.querySelector(".error_address");
-           try
-           {
-               new AddressBook().address=address.value;
-               error.textContent='';
-           }
-           catch(e)
-           {
-               error.textContent=e;
-           }
-       })
-   })
-
+})
 
 
    const createInnerHtml=()=>
 {
-    alert("hi");
+    
     let Json1=createJson();
     
     if(Json1.length===0) return;
-    const headerHtml='<thead><th></th><th>Name</th><th>Address</th><th>City</th><th>State</th><th>ZipCode</th><th>Phone Number</th></thead>';
+    const headerHtml='<thead><th>Name</th><th>Address</th><th>City</th><th>State</th><th>ZipCode</th><th>Phone Number</th></thead>';
 let innertHtml=`${headerHtml}`;
     for(let Json of Json1)
     {
@@ -164,4 +124,19 @@ const jsonEmptyOrNot=()=>
   const getInputValue = (id) => {
     let value = document.querySelector(id).value;
     return value;
+}
+const remove=(node)=>
+{
+    
+    let contact=JSON.parse(localStorage.getItem("AddressBook"));
+    let map=contact.find(book=>book._id==node.id);
+     let index=contact.map(data=>data._id).indexOf(map._id);
+    contact.splice(index,1);
+    localStorage.setItem("AddressBook",JSON.stringify(contact));
+    alert("removed");
+    createInnerHtml();
+}
+const update=(id)=>
+{
+    alert("gi")
 }
