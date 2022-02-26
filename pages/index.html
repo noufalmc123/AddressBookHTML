@@ -86,38 +86,9 @@
                 </div>
                 <div class="form-content">
                     <div style="margin-left:10px;">
-                        <a href="http://127.0.0.1:5500/pages/view.html"
-                        style="appearance: auto;text-decoration: none;
-                        -webkit-writing-mode: horizontal-tb !important;
-                        font-style: ;
-                        font-variant-ligatures: ;
-                        font-variant-caps: ;
-                        font-variant-numeric: ;
-                        font-variant-east-asian: ;
-                        font-weight: ;
-                        font-stretch: ;
-                        font-size: ;
-                        font-family: ;
-                        text-rendering: auto;
-                        color: -internal-light-dark(black, white);
-                        letter-spacing: normal;
-                        word-spacing: normal;
-                        line-height: normal;
-                        text-transform: none;
-                        text-indent: 0px;
-                        text-shadow: none;
-                        display: inline-block;
-                        text-align: center;
-                        align-items: flex-start;
-                        cursor: default;
-                        box-sizing: border-box;
-                        background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
-                        margin: 0em;
-                        padding: 1px 6px;
-                        border-width: 2px;
-                        border-style: outset;
-                        border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-                        border-image: initial;">Cancel</a>
+                        <button style="height: 40px;
+                        width: 158%;">
+                        <a href="http://127.0.0.1:5500/pages/view.html" >Cancel</a></button>
                     </div>
                     <div style="margin-left:80px;">
                         <button type="submit" style="padding:10px;width: 127px;">Add</button>
@@ -134,10 +105,10 @@
 </html>
 <script>
     window.addEventListener('DOMContentLoaded', (event) => {
-
-createInnerHtml();
+        checkForUpadte();
    const name=document.querySelector("#name");
    name.addEventListener('input',function(){
+       
        let error=document.querySelector(".error_name");
        try
        {

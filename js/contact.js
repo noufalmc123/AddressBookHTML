@@ -27,7 +27,7 @@ class AddressBook
     set address(address)
     {
         // let addRegex=RegExp('(^((?:(?:^| )\S+ *)){3,})$');
-        let addRegex = RegExp('^[A-Z]{1}[a-z A-Z]{2,}$')
+        let addRegex = RegExp('^([A-Za-z0-9]{3,}\\s{1,}$')
         if(addRegex.test(address))
         {
             this._address=address;

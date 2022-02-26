@@ -8,6 +8,7 @@
     <link rel='stylesheet' type='text/css' media='screen' href='/css/style.css'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;1,100&family=Roboto+Serif:ital,wght@1,100&display=swap" rel="stylesheet">
     <script src="/js/library.js"></script>
+    <script src="/js/contact.js"></script>
 </head>
 <body>
     <header class="header">
@@ -21,9 +22,14 @@
     </header>
     <div class="parent">
         <div class="form-content">
-        <h3>Person Details</h3>
+        <h3>Person Details</h3> 
+        <div style="display: flex;width:50%;justify-content: right;margin-right:60px;margin-top:20px;">
+           <a href="http://127.0.0.1:5500/pages/index.html" style="text-decoration: none;cursor: pointer;">
+             <button style="background-color:#4287f5;border: none;color: white;height:40px;">
+                <img src="/assets/add-24px.svg">Add Contacts</button></a>
+        </div>
+        </div>
         
-    </div>
     <div class="parent">
         <div class="table">
         <table id="table">
@@ -34,3 +40,10 @@
     </div>
 </body>
 </html>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+
+createInnerHtml();
+
+})
+</script>

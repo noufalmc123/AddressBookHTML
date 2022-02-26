@@ -1,24 +1,49 @@
 let jsonObject={};
+let status=false;
 
-
-
-
-
-window.addEventListener('DOMContentLoaded', (event) => {
-
-    createInnerHtml();
-})
-
+const checkForUpadte=()=>
+{
+    
+    let abJson=localStorage.getItem("EditAddress");
+    isUpdate=abJson ? true : false;
+    if(!isUpdate) return;
+    setForm(JSON.parse(abJson));
+}
+const setForm=(json)=>
+{
+    setValue("#name",json._name);
+    setValue("#address",json._address);
+    setValue("#phone",json._phoneNumber);
+    setValue("#zip",json._zipcode);
+    setGroupValue("city",json._city);
+    setGroupValue("state",json._city);
+}
+const setValue=(id,value)=>
+{
+    
+    document.querySelector(id).value=value;
+}
+const setGroupValue=(name,value)=>
+{
+    var myOpts = document.getElementById(name).options;
+    for(i=0;i<myOpts.length;i++)
+    {
+        
+        if(myOpts[i].value==value)
+        {
+          
+            myOpts[i].selected=true;
+        }
+    }
+}
 
    const createInnerHtml=()=>
 {
-    
-    let Json1=createJson();
-    
-    if(Json1.length===0) return;
+    let Json2=createJson();
+    if(Json2.length===0) return;
     const headerHtml='<thead><th>Name</th><th>Address</th><th>City</th><th>State</th><th>ZipCode</th><th>Phone Number</th></thead>';
 let innertHtml=`${headerHtml}`;
-    for(let Json of Json1)
+    for(let Json of Json2)
     {
     innertHtml=`${innertHtml}<tr><td>${Json._name}</td><td>${Json._address}</td><td>
 <label class="dept-label">${Json._city}</label></td><td>${Json._state}</td><td>${Json._zipcode}</td>
@@ -30,10 +55,7 @@ let innertHtml=`${headerHtml}`;
 document.querySelector("#table").innerHTML=innertHtml;
 }
 
-   const createJson=()=>
-{
-    return localStorage.getItem("AddressBook") ? JSON.parse(localStorage.getItem('AddressBook')):[];
-}
+   
 
    const operation=(callback)=>
    {
@@ -68,26 +90,47 @@ document.querySelector("#table").innerHTML=innertHtml;
     jsonObject._mobile=getInputValue("#phone");
 
   }
-  const saveAddress=(id)=>
+  const saveAddress=()=>
   {
-      if(id==undefined)
+      let id;
+    let abJson=localStorage.getItem("EditAddress");
+    let ab=JSON.parse(localStorage.getItem("AddressBook")); 
+      if(!abJson)
       {
             id=jsonEmptyOrNot();
-      }
-      let contactObj=new AddressBook();
-      contactObj._id=id;
-      saveAddressIntoLocal(contactObj);
-      let ab=JSON.parse(localStorage.getItem("AddressBook"));  
-      if(ab)
-      {
-          ab.push(contactObj);
+            if(id!=1)
+            {
+                let length=ab.length;
+                id=parseInt(length)+1;
+            }
       }
       else
       {
-          ab=[contactObj];
+          id=JSON.parse(localStorage.getItem("EditAddress"))._id;
+      }
+      let contactObj=new AddressBook();
+      contactObj._id=id;
+      if(ab)
+      {
+        let editInfo=ab.find(empList=>empList._id==id);
+        if(!abJson)
+        {
+            ab.push(saveAddressIntoLocal(contactObj));
+        }
+        else
+        {
+            
+            let index1=ab.map(emp=>emp._id).indexOf(editInfo._id);
+            ab.splice(index1,1,saveAddressIntoLocal(contactObj));
+        }
+      }
+      else
+      {
+          ab=[saveAddressIntoLocal(contactObj)];
       }
       localStorage.setItem("AddressBook",JSON.stringify(ab));
       alert("Data Saved");
+      window.location.replace("../pages/index.html");
   }
   const saveAddressIntoLocal=(contactObj)=>
   {
@@ -115,10 +158,11 @@ document.querySelector("#table").innerHTML=innertHtml;
       }
       contactObj._zipcode=jsonObject._zip;
       alert(contactObj.toString());
+      return contactObj;
   }
 const jsonEmptyOrNot=()=>
 {
-    return localStorage.getItem("AddressBook") ? JSON.parse(localStorage.getItem('EmployeePayroll')).length:1;
+    return localStorage.getItem("AddressBook") ? JSON.parse(localStorage.getItem('AddressBook')).length:1;
 }
 
   const getInputValue = (id) => {
@@ -136,7 +180,17 @@ const remove=(node)=>
     alert("removed");
     createInnerHtml();
 }
-const update=(id)=>
+const update=(node)=>
 {
-    alert("gi")
+    let addressbook=JSON.parse(localStorage.getItem('AddressBook'));
+    let contact= addressbook.find(con=>con._id==node.id);
+    if(!contact) return;
+    let editData=JSON.stringify(contact);
+    localStorage.setItem("EditAddress",editData);
+    window.location.replace("../pages/index.html");
+}
+const createJson=()=>
+{
+    
+    return localStorage.getItem("AddressBook") ? JSON.parse(localStorage.getItem('AddressBook')):[];
 }
