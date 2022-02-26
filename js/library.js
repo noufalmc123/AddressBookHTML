@@ -16,7 +16,7 @@ const setForm=(json)=>
     setValue("#phone",json._phoneNumber);
     setValue("#zip",json._zipcode);
     setGroupValue("city",json._city);
-    setGroupValue("state",json._city);
+    setGroupValue("state",json._state);
 }
 const setValue=(id,value)=>
 {
@@ -65,6 +65,7 @@ document.querySelector("#table").innerHTML=innertHtml;
    {
        setJson();
        saveAddress();
+       rese();
    }
    const rese=()=>
    {
@@ -94,14 +95,15 @@ document.querySelector("#table").innerHTML=innertHtml;
   {
       let id;
     let abJson=localStorage.getItem("EditAddress");
-    let ab=JSON.parse(localStorage.getItem("AddressBook")); 
+    let ab=JSON.parse(localStorage.getItem("AddressBook"));
       if(!abJson)
       {
             id=jsonEmptyOrNot();
             if(id!=1)
             {
-                let length=ab.length;
-                id=parseInt(length)+1;
+                watcherId = Math.max.apply( null, ab.map( s => +s._id ) );
+                id=parseInt(watcherId)+1;
+                
             }
       }
       else
@@ -130,7 +132,9 @@ document.querySelector("#table").innerHTML=innertHtml;
       }
       localStorage.setItem("AddressBook",JSON.stringify(ab));
       alert("Data Saved");
-      window.location.replace("../pages/index.html");
+      localStorage.removeItem("EditAddress");
+      return
+      
   }
   const saveAddressIntoLocal=(contactObj)=>
   {
@@ -178,6 +182,7 @@ const remove=(node)=>
     contact.splice(index,1);
     localStorage.setItem("AddressBook",JSON.stringify(contact));
     alert("removed");
+    localStorage.removeItem("EditAddress");
     createInnerHtml();
 }
 const update=(node)=>
