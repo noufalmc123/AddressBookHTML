@@ -21,7 +21,7 @@ const setForm=(json)=>
 const setValue=(id,value)=>
 {
     
-    document.querySelector(id).value=value;
+    document.querySelector(id).value=value; 
 }
 const setGroupValue=(name,value)=>
 {
